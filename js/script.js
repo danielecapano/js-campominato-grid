@@ -31,6 +31,7 @@ function createBox() {
 
     boxElement.addEventListener("click", () => {
       boxElement.classList.toggle("selected");
+      console.log(boxElement.innerHTML);
     });
   }
 }
