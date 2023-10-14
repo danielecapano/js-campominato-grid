@@ -9,7 +9,10 @@ btnPlay.addEventListener("click", () => {
 
   createGrid(matrixGrid);
 
-  createBox();
+  const boxGrid = document.querySelectorAll(".box");
+  const columns = parseInt(levelSelect.value);
+
+  createBox(boxGrid, columns);
 });
 
 function createGrid(matrix) {
@@ -22,16 +25,16 @@ function createGrid(matrix) {
   }
 }
 
-function createBox() {
-  const boxGrid = document.querySelectorAll(".box");
-  const columns = parseInt(levelSelect.value);
-  for (let i = 0; i < boxGrid.length; i++) {
-    const boxElement = boxGrid[i];
-    boxElement.style.width = `calc(100% / ${columns})`;
+function createBox(parent, columnsGrid) {
+  for (let i = 0; i < parent.length; i++) {
+    const boxElement = parent[i];
+    boxElement.style.width = `calc(100% / ${columnsGrid})`;
 
-    boxElement.addEventListener("click", () => {
-      boxElement.classList.toggle("selected");
-      console.log(boxElement.innerHTML);
-    });
+    boxElement.addEventListener("click", boxOnClick);
   }
+}
+
+function boxOnClick() {
+  this.classList.add("selected");
+  console.log(this.innerHTML);
 }
